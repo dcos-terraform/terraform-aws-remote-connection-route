@@ -2,6 +2,8 @@ AWS REMOTE CONNECTIONS AND ROUTES
 ============
 This module creates creates the peer connection, peer accecpter, and the aws routes for remote regions for DC/OS on AWS.
 
+*** NOTE: This is extremely experimental and Mesoshpere DOES NOT officially support this module currently 
+
 
 EXAMPLE
 -------
