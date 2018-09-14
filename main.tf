@@ -8,20 +8,19 @@
 *
 *```hcl
 *module "remote_connection_route" {
-*  source                = "/Users/westonbassler/Documents/git-repos/dcos-terraform-aws-remote-connection-route"
-*  remote_vpc_id         = "${module.remote_region_vpc.vpc_id}"
-*  remote_region         = "${var.remote_region}"
-* remote_route_table_id = "${module.remote_region_vpc.aws_main_route_table_id}"
+*  source                = "dcos-terraform/remote-connection-route/aws"
+*  remote_vpc_id         = "vpc-987a65b4"
+*  remote_region         = "us-west-2"
+*  remote_route_table_id = "rtb-01234567ab"
 *
-*  main_vpc_id           = "${module.vpc.vpc_id}"
-*  main_region           = "${var.region}"
-*  main_subnet           = "${var.subnet_range}"
-*  main_route_table_id   = "${module.vpc.aws_main_route_table_id}"
+*  main_vpc_id           = "vpc-123z45y4"
+*  main_region           = "us-east-1"
+*  main_subnet           = "10.0.0.0/8"
+*  main_route_table_id   = "rtb-ab123456789"
 *  
-*  cluster_name        = "${var.prefix}"
-*  tags                = "${var.tags}"
+*  cluster_name          = "dcos-cluster"
 *  
-* }
+*}
 *```
 */
 
@@ -40,7 +39,7 @@ resource "aws_vpc_peering_connection" "remote_region_peering" {
   peer_vpc_id = "${var.main_vpc_id}"
   peer_region = "${var.main_region}"
   vpc_id      = "${var.remote_vpc_id}"
-  auto_accept = false
+  auto_accept = "${var.auto_accept}"
 
   tags {
     Name = "${var.cluster_name}-remote"
@@ -51,7 +50,7 @@ resource "aws_vpc_peering_connection_accepter" "main_region_peering" {
   provider = "aws.main"
 
   vpc_peering_connection_id = "${aws_vpc_peering_connection.remote_region_peering.id}"
-  auto_accept               = true
+  auto_accept               = "${var.auto_accept}"
 
   tags {
     Name = "${var.cluster_name}-main"

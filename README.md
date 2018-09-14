@@ -10,18 +10,17 @@ EXAMPLE
 
 ```hcl
 module "remote_connection_route" {
-  source                = "/Users/westonbassler/Documents/git-repos/dcos-terraform-aws-remote-connection-route"
-  remote_vpc_id         = "${module.remote_region_vpc.vpc_id}"
-  remote_region         = "${var.remote_region}"
-  remote_route_table_id = "${module.remote_region_vpc.aws_main_route_table_id}"
+  source                = "dcos-terraform/remote-connection-route/aws"
+  remote_vpc_id         = "vpc-987a65b4"
+  remote_region         = "us-west-2"
+  remote_route_table_id = "rtb-01234567ab"
 
-  main_vpc_id           = "${module.vpc.vpc_id}"
-  main_region           = "${var.region}"
-  main_subnet           = "${var.subnet_range}"
-  main_route_table_id   = "${module.vpc.aws_main_route_table_id}"
+  main_vpc_id           = "vpc-123z45y4"
+  main_region           = "us-east-1"
+  main_subnet           = "10.0.0.0/8"
+  main_route_table_id   = "rtb-ab123456789"
   
-  cluster_name        = "${var.prefix}"
-  tags                = "${var.tags}"
+  cluster_name          = "dcos-cluster"
   
 }
 ```
@@ -32,6 +31,7 @@ module "remote_connection_route" {
 | remote_vpc_id | The VPC ID of the Remote VPC | string | - | yes |
 | remote_region| The AWS Remote Region (ex: us-west-2, us-east-1) | string | - | yes |
 | remote_route_table_id | ID of the Route Table for the Remote Region | string | - | yes |
+| auto_accept | Auto Accept peer connections | string | false | no |
 | main_vpc_id | The VPC ID of the Main Region | string | - | yes |
 | main_region | The Main Region where the Masters run (ex: us-west-2, us-east-1) | string | - | yes |
 | main_route_table_id | ID of the Route Table for the Main Region | string | - | yes |

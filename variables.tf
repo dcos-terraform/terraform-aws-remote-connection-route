@@ -10,6 +10,11 @@ variable "remote_route_table_id" {
   description = "ID of the Route Table for the Remote Region"
 }
 
+variable "auto_accept" {
+  description = "Auto Accecpt Peering connections"
+  default     = false
+}
+
 variable "main_vpc_id" {
   description = "The VPC ID of the Main Region"
 }
