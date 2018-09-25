@@ -11,7 +11,7 @@ variable "remote_route_table_id" {
 }
 
 variable "auto_accept" {
-  description = "Auto Accecpt Peering connections"
+  description = "Auto accept peering connections"
   default     = false
 }
 
@@ -32,11 +32,11 @@ variable "main_subnet" {
 }
 
 variable "cluster_name" {
-  description = "Name of the DC/OS Cluster"
+  description = "Name of the DC/OS cluster"
 }
 
 variable "tags" {
-  description = "Custom tags added to the resources created by this module"
+  description = "Add custom tags to all resources"
   type        = "map"
   default     = {}
 }
