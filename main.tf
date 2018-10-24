@@ -1,5 +1,5 @@
 /**
-* AWS DC/OS Remote Connections and Routes for Remote Region
+* AWS DC/OS Remote Connections and Routes for Remote Region (NOTE: THIS IS CURRENTLY EXPERIMENTAL AND NOT YET SUPPORTED)
 * ===========
 * This module creates the connections and routes between main and remote regions in AWS for DC/OS Cluster for remote Agents
 *
