@@ -27,7 +27,6 @@ module "remote_connection_route" {
 
 | Name | Description | Type | Default | Required |
 |------|-------------|:----:|:-----:|:-----:|
-| auto_accept | Auto accept peering connections | string | `false` | no |
 | cluster_name | Name of the DC/OS cluster | string | - | yes |
 | main_region | The Main Region where the Masters run (ex: us-west-2, us-east-1) | string | - | yes |
 | main_route_table_id | ID of the Route Table for the Main Region | string | - | yes |
