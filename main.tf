@@ -39,7 +39,7 @@ resource "aws_vpc_peering_connection" "remote_region_peering" {
   peer_vpc_id = "${var.main_vpc_id}"
   peer_region = "${var.main_region}"
   vpc_id      = "${var.remote_vpc_id}"
-  auto_accept = "${var.auto_accept}"
+  auto_accept = false
 
   tags {
     Name = "${var.cluster_name}-remote"
@@ -50,7 +50,7 @@ resource "aws_vpc_peering_connection_accepter" "main_region_peering" {
   provider = "aws.main"
 
   vpc_peering_connection_id = "${aws_vpc_peering_connection.remote_region_peering.id}"
-  auto_accept               = "${var.auto_accept}"
+  auto_accept               = true
 
   tags {
     Name = "${var.cluster_name}-main"
